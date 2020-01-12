@@ -1,9 +1,20 @@
+from typing import List
+
 import numpy as np
 
 
 def gaussian_random_walk(n: int) -> np.array:
     dx = np.random.normal(scale=2.0, size=n)
     return dx.cumsum()
+
+def bernoulli_random_walk(n: int) -> np.array:
+    dx = np.random.choice([-1.0, 1.0], size=n)
+    return dx.cumsum()
+
+def discrete_random_walk(n: int, choices: List[int]=[-1.0, 0.0, 1.0], ps: List[float]=[1/3, 1/3, 1/3]) -> np.array:
+    dx = np.random.choice(choices, size=n, p=ps)
+    return dx.cumsum()
+
 
 def moving_window_2d(x: np.array, window: int) -> np.array:
     """
